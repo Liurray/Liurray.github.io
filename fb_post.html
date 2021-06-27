@@ -47,6 +47,14 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
+    FB.api(
+      '/104745581854224/feed',
+          'POST',
+            {"message":"test123從網頁"},
+  function(response) {
+      // Insert your code here
+  }
+);
   }
 
 </script>
