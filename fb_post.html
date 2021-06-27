@@ -42,9 +42,11 @@
  
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
+    var body = 'Reading JS SDK documentation';
     FB.api('/me/feed', 'post',{message :"測試"} ,function(response) {
       if (!response || response.error) {
     alert('Error occured');
+    console.log('發文失敗 幹')
   } else {
     alert('Post ID: ' + response.id);
   }
