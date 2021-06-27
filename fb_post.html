@@ -51,7 +51,7 @@
     });
     FB.api('/me/feed' ,function(response) {
  
-      console.log('Successful login for: ' + response[0].message);
+      console.log('Successful login for: ' + response.data[0].message);
       document.getElementById('post_record').innerHTML =
           '發文紀錄, 訊息是' + response[0].message;
 });
