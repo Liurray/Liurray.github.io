@@ -60,9 +60,9 @@ FB.api('/104745581854224/feed',
     {"message" :'123123'} ,
     function(response) {
  
-        console.log('Successful 抓到成功發文粉絲頁貼文的流水號: ' + response);
+        console.log('Successful 抓到成功發文粉絲頁貼文的流水號: ' +JSON.stringify(response));
         document.getElementById('post_record').innerHTML =
-        '發文紀錄, 訊息是抓json' + response;
+        '發文紀錄, 訊息是抓json轉字串' + JSON.stringify(response);
 });
 
     /*FB.api(
