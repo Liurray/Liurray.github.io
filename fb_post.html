@@ -49,11 +49,11 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, 你的名字是' + response.name + '!' +'登入ID為:' + response.id;
     });
-    FB.api('/me/feed' ,function(response) {
+    FB.api('/104745581854224' ,function(response) {
  
-      console.log('Successful login for: ' + response.data[0].id);
+      console.log('Successful login for: ' + response.name);
       document.getElementById('post_record').innerHTML =
-          '發文紀錄, 訊息是' + response.data[0].id;
+          '發文紀錄, 訊息是' + response.name;
 });
 
     /*
