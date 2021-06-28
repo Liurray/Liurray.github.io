@@ -25,7 +25,7 @@
 
 
   function check_premission() {     
-    var body = 'Reading JS SDK documentation';          // Called when a person is finished with the Login Button.
+    var body = '內容成功發布';          // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) { 
           console.log('login status',response);
           if(!(response.status === 'connected')){
@@ -50,7 +50,7 @@
                                     if (!response || response.error) {
                                         alert('Error occured');
                                     } else {
-                                        alert('Post ID: ' + response.id);
+                                        alert('內容成功發布到粉絲團 Post ID: ' + response.id);
                                     }
                                 });
                                 }
