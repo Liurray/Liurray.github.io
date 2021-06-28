@@ -59,7 +59,7 @@
 FB.api('/me/feed',
     'POST',
     {"message" :'網頁發文',
-     "access_token" :"EAAEq7clzjskBAF6q5EM5I7ZAN2ufJuSswXtHZBecE9QXhJaxQKchvEJypeZCaLhC2ZAnZBwocZABmiYxGX1JQG4qSZCLRrZCdCybiHjgvZB3ZBiGvMDUzwC9VZBbvyM7ZAanSuUo3Mb1pZCec0ugt3NlDXme1xRHZCxLE3QAeuR6sVRy9QUZCoygq9L8Y3n"
+     "access_token" :"EAAEq7clzjskBAMQDdVn4T1GiwHIZBEy0YnZB2ZCMQ7fk56hf4ol22MBunG0gABJSBZBca5QcQJrzsldZA87loX6I5nUQGM5nFzYmfppQjbXYftwlCwQSlgDdfvnyRlwquGiIdNt5KeQlFSjWZCOwnZAEgi1uBV8Fy7lw7p3O5VHKNItMpBCTRNy"
     } ,
     function(response) {
  
@@ -67,7 +67,7 @@ FB.api('/me/feed',
         document.getElementById('post_record').innerHTML =
         '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
 });
-
+  console.log("發文用的access token 是 EAAEq7clzjskBAMQDdVn4T1GiwHIZBEy0YnZB2ZCMQ7fk56hf4ol22MBunG0gABJSBZBca5QcQJrzsldZA87loX6I5nUQGM5nFzYmfppQjbXYftwlCwQSlgDdfvnyRlwquGiIdNt5KeQlFSjWZCOwnZAEgi1uBV8Fy7lw7p3O5VHKNItMpBCTRNy")
     /*FB.api(
       '/104745581854224/feed',
           'POST',
