@@ -24,15 +24,53 @@
   }
 
 
-  function check_premission() {               // Called when a person is finished with the Login Button.
-    FB.api('/me/permissions','GET',{} ,function(response) {
+  function check_premission() {     
+    var body = 'Reading JS SDK documentation';          // Called when a person is finished with the Login Button.
+    FB.getLoginStatus(function(response) { 
+          console.log('login status',response);
+          if(!(response.status === 'connected')){
+                location.href = './fb_post.html';
+              } else{
+                  uID = response.authResponse.userID;  //使用者登入id
+                  accessToken = response.authResponse.accessToken; //使用者登入的AccessToken
+                  console.log('用戶accesstoken::',response.authResponse.accessToken);
+                  FB.api('/me', {fields: 'last_name'}, {  access_token : accessToken } ,function(response) {
+                        console.log(response);
+                    });
+                    //取的PageToken
+                    if(accessToken!=null){
+                      FB.api('/me/accounts','get',{  access_token : accessToken },function(response){
+                          console.log('pages的回應',response);
+                          if(response!=null){
+                            var data = response.data;
+                            pageAccessToken= data[0].access_token;
+                            console.log('pageAccessToken::',pageAccessToken);
+                            FB.api('/104745581854224/feed', 'post', {message :body, access_token : pageAccessToken }, function(response) {
+                                    console.log('response',response)
+                                    if (!response || response.error) {
+                                        alert('Error occured');
+                                    } else {
+                                        alert('Post ID: ' + response.id);
+                                    }
+                                });
+                                }
+
+                        });
+                      }
+
+
+    }
+    
+    /*FB.api('/me/permissions','GET',{} ,function(response) {
  
         console.log('Successful 授權的權限: ' + JSON.stringify(response));
         document.getElementById('premission').innerHTML =
           '授權的權限' + JSON.stringify(response);
   
-})
-  }
+    })*/
+      })
+}
+
 
 
   window.fbAsyncInit = function() {
@@ -49,12 +87,13 @@
  
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
-    var body = 'Reading JS SDK documentation';
+    
     FB.api('/me' ,function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, 你的名字是' + response.name + '!' +'登入ID為:' + response.id;
     });
+    
  
  
 
