@@ -38,9 +38,7 @@
     //FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
     //  statusChangeCallback(response);        // Returns the login status.
    // });
-  };
- 
-  FB.api('/104745581854224/feed',
+   FB.api('/104745581854224/feed',
     'POST',
     {
      "access_token" :"EAAEq7clzjskBALreRpDG3GI1ZAsVDRMdfoaLY2yZAkYUahbgaQHsFV6VprkK8ymKRg7XWHOBvuY3H0Javxnd1sDehhLEpfUVkP775JWNoOjGe1OIwOj8eE2QQHV9TSeldTk7DbkCMR9uAj9n5zqZAwRwGezihzWm8DkMyKneB079uGzPn60",
@@ -52,6 +50,9 @@
         document.getElementById('post_record').innerHTML =
         '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
 });
+  };
+ 
+  
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
     var body = 'Reading JS SDK documentation';
