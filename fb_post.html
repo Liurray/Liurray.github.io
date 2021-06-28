@@ -56,10 +56,9 @@
       document.getElementById('post_record').innerHTML =
           '發文紀錄, 訊息是抓json喔' + response.data[0].message;
 });*/
-FB.api('/me/feed',
+FB.api('/104745581854224/feed',
     'POST',
-    {"message" :'網頁發文',
-     "access_token" :"EAAEq7clzjskBAMQDdVn4T1GiwHIZBEy0YnZB2ZCMQ7fk56hf4ol22MBunG0gABJSBZBca5QcQJrzsldZA87loX6I5nUQGM5nFzYmfppQjbXYftwlCwQSlgDdfvnyRlwquGiIdNt5KeQlFSjWZCOwnZAEgi1uBV8Fy7lw7p3O5VHKNItMpBCTRNy"
+    {"message" :'網頁發文'
     } ,
     function(response) {
  
@@ -83,7 +82,7 @@ FB.api('/me/feed',
 
 <!-- The JS SDK Login Button -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="email, pages_show_list, publish_to_groups, pages_read_engagement, pages_read_user_content, pages_manage_posts, pages_manage_engagement, public_profile" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
