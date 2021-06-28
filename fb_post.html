@@ -24,7 +24,7 @@
   }
 
 
-  function check_premission() {     
+  function post() {     
     var body = '內容成功發布';          // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) { 
           console.log('login status',response);
@@ -99,18 +99,7 @@
 
 
 }
-function post(){
-    FB.api('/me/feed',
-    'POST',
-    {"message" :'網頁js發文'
-    } ,
-    function(response) {
-      //EAAEq7clzjskBAHCJD2hZBhmfNkZBDMIRxllqpUTvJptld9YJOXrW1zsplaytKMVSZAHl826FlhXZBDIPgyu9t7pNxwBtpf83880bpjW5rQnoqXcuo4Q1Ig6i4jgpyGvonChbntvF24y6YQR1yJXyhO4v877HpvPZCWKqEKmXwR2fV6hiLaZC8e
-        console.log('Successful 抓到成功發文粉絲頁貼文的流水號: ' +JSON.stringify(response));
-        document.getElementById('post_record').innerHTML =
-        '發文紀錄, 訊息是' + JSON.stringify(response);
-    });
-  }
+
 </script>
 
 
@@ -118,7 +107,7 @@ function post(){
 
 <fb:login-button scope="email, pages_show_list, publish_to_groups, pages_read_engagement, pages_read_user_content, pages_manage_posts, pages_manage_engagement, public_profile" onlogin="checkLoginState();">
 </fb:login-button>
-<button  onclick="check_premission()";>檢查權限</button>
+
 <button  onclick="post()";>發文</button>
 <div id="status">請先登入
 </div>
