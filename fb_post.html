@@ -45,7 +45,7 @@
                             var data = response.data;
                             pageAccessToken= data[0].access_token;
                             console.log('pageAccessToken::',pageAccessToken);
-                            FB.api('/104745581854224/feed', 'post', {message :body, access_token : pageAccessToken }, function(response) {
+                            FB.api('/104745581854224/photos', 'post', {message :body, access_token : pageAccessToken }, function(response) {
                                     console.log('response',response)
                                     if (!response || response.error) {
                                         alert('Error occured');
