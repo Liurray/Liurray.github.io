@@ -22,7 +22,6 @@
   function checkLoginState() {               // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) {   // See the onlogin handler
       statusChangeCallback(response);
-      console.log(response.authResponse.accessToken)
     });
   }
 
@@ -36,27 +35,19 @@
     });
 
 
-    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-      statusChangeCallback(response);        // Returns the login status.
-    });
+    
   };
  
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
     var body = 'Reading JS SDK documentation';
     FB.api('/me' ,function(response) {
- 
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, 你的名字是' + response.name + '!' +'登入ID為:' + response.id;
     });
-    /*FB.api('/104745581854224/feed','GET',{} ,function(response) {
  
-      console.log('Successful 抓到粉絲頁貼文內容: ' + response.data[0].message);
-      document.getElementById('post_record').innerHTML =
-          '發文紀錄, 訊息是抓json喔' + response.data[0].message;
-});*/
-FB.api('/104745581854224/feed',
+  /*FB.api('/104745581854224/feed',
     'POST',
     {"message" :'網頁發文'
     } ,
@@ -65,8 +56,8 @@ FB.api('/104745581854224/feed',
         console.log('Successful 抓到成功發文粉絲頁貼文的流水號: ' +JSON.stringify(response));
         document.getElementById('post_record').innerHTML =
         '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
-});
-FB.api('/104745581854224/permissions','GET',{} ,function(response) {
+});*/
+FB.api('/4133501340089987/permissions','GET',{} ,function(response) {
  
  console.log('Successful 授權的權限: ' + JSON.stringify(response));
  document.getElementById('post_record').innerHTML =
