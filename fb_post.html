@@ -66,15 +66,13 @@ FB.api('/104745581854224/feed',
         document.getElementById('post_record').innerHTML =
         '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
 });
-  console.log("發文用的access token 是 EAAEq7clzjskBAMQDdVn4T1GiwHIZBEy0YnZB2ZCMQ7fk56hf4ol22MBunG0gABJSBZBca5QcQJrzsldZA87loX6I5nUQGM5nFzYmfppQjbXYftwlCwQSlgDdfvnyRlwquGiIdNt5KeQlFSjWZCOwnZAEgi1uBV8Fy7lw7p3O5VHKNItMpBCTRNy")
-    /*FB.api(
-      '/104745581854224/feed',
-          'POST',
-            {"message":"test123從網頁"},
-  function(response) {
-      // Insert your code here
-  }
-);*/
+FB.api('/104745581854224/permissions','GET',{} ,function(response) {
+ 
+ console.log('Successful 授權的權限: ' + JSON.stringify(response));
+ document.getElementById('post_record').innerHTML =
+     '授權的權限' + JSON.stringify(response);
+});
+
   }
 
 </script>
