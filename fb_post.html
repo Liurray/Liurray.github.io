@@ -60,11 +60,23 @@
 FB.api('/4133501340089987/permissions','GET',{} ,function(response) {
  
  console.log('Successful 授權的權限: ' + JSON.stringify(response));
- document.getElementById('post_record').innerHTML =
+ document.getElementById('premission').innerHTML =
      '授權的權限' + JSON.stringify(response);
-});
-
+  post();
+})
+function post(){
+    FB.api('/104745581854224/feed',
+    'POST',
+    {"message" :'網頁js發文'
+    } ,
+    function(response) {
+ 
+        console.log('Successful 抓到成功發文粉絲頁貼文的流水號: ' +JSON.stringify(response));
+        document.getElementById('post_record').innerHTML =
+        '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
+    });
   }
+}
 
 </script>
 
@@ -76,7 +88,9 @@ FB.api('/4133501340089987/permissions','GET',{} ,function(response) {
 
 <div id="status">請先登入
 </div>
-<div id="post_record">權限紀錄
+<div id="premission">獲取的權限
+</div>
+<div id="post_record">發文紀錄
 </div>
 <!-- Load the JS SDK asynchronously -->
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
