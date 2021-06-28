@@ -19,10 +19,14 @@
   }
 
 
-  function checkLoginState() {               // Called when a person is finished with the Login Button.
-    FB.getLoginStatus(function(response) {   // See the onlogin handler
-      statusChangeCallback(response);
-    });
+  function check_premission() {               // Called when a person is finished with the Login Button.
+    FB.api('/4133501340089987/permissions','GET',{} ,function(response) {
+ 
+        console.log('Successful 授權的權限: ' + JSON.stringify(response));
+        document.getElementById('premission').innerHTML =
+          '授權的權限' + JSON.stringify(response);
+  
+})
   }
 
 
@@ -57,13 +61,7 @@
         document.getElementById('post_record').innerHTML =
         '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
 });*/
-FB.api('/4133501340089987/permissions','GET',{} ,function(response) {
- 
- console.log('Successful 授權的權限: ' + JSON.stringify(response));
- document.getElementById('premission').innerHTML =
-     '授權的權限' + JSON.stringify(response);
-  post();
-})
+
 function post(){
     FB.api('/104745581854224/feed',
     'POST',
@@ -85,7 +83,7 @@ function post(){
 
 <fb:login-button scope="email, pages_show_list, publish_to_groups, pages_read_engagement, pages_read_user_content, pages_manage_posts, pages_manage_engagement, public_profile" onlogin="checkLoginState();">
 </fb:login-button>
-
+<button value="檢查權限" onclick="check_premission()";></button>
 <div id="status">請先登入
 </div>
 <div id="premission">獲取的權限
