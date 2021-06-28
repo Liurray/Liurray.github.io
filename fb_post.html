@@ -25,7 +25,7 @@
 
 
   function check_premission() {               // Called when a person is finished with the Login Button.
-    FB.api('/4133501340089987/permissions','GET',{} ,function(response) {
+    FB.api('/104745581854224/permissions','GET',{} ,function(response) {
  
         console.log('Successful 授權的權限: ' + JSON.stringify(response));
         document.getElementById('premission').innerHTML =
@@ -61,7 +61,7 @@
 
 }
 function post(){
-    FB.api('/me/feed',
+    FB.api('/104745581854224/feed',
     'POST',
     {"message" :'網頁js發文'
     } ,
