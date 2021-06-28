@@ -43,12 +43,12 @@
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
     var body = 'Reading JS SDK documentation';
-    FB.api('/me' ,function(response) {
+    /*FB.api('/me' ,function(response) {
  
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, 你的名字是' + response.name + '!' +'登入ID為:' + response.id;
-    });
+    });*/
     /*FB.api('/104745581854224/feed','GET',{} ,function(response) {
  
       console.log('Successful 抓到粉絲頁貼文內容: ' + response.data[0].message);
@@ -59,8 +59,6 @@ FB.api('/me/feed',
     'POST',
     {"message" :'網頁發文',
      "access_token" :"EAAEq7clzjskBAFO45H5nA2UNZAX2FjjqFl0ruJxNc5wv9gJpomD0iHFyyIJHZCsXGZANl7KEgz4IDDOXZBZAxUZAuYPrAOlM3wvhzep4vnZAdVP3nQ5N0dCiW2a61NURPtIT5ZAZCEXewZA9TnSpJeLC6t4eoaF1WcnjMxBs0YAVMuLR3jMywL429I"
-    
-    
     } ,
     function(response) {
  
