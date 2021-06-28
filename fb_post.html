@@ -22,6 +22,7 @@
   function checkLoginState() {               // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) {   // See the onlogin handler
       statusChangeCallback(response);
+      console.log(response.authResponse.accessToken)
     });
   }
 
@@ -35,40 +36,37 @@
     });
 
 
-    //FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-    //  statusChangeCallback(response);        // Returns the login status.
-   // });
-   FB.api('/104745581854224/feed',
-    'POST',
-    {
-     "access_token" :"EAAEq7clzjskBALreRpDG3GI1ZAsVDRMdfoaLY2yZAkYUahbgaQHsFV6VprkK8ymKRg7XWHOBvuY3H0Javxnd1sDehhLEpfUVkP775JWNoOjGe1OIwOj8eE2QQHV9TSeldTk7DbkCMR9uAj9n5zqZAwRwGezihzWm8DkMyKneB079uGzPn60",
-     "message" :'網頁發文'
-    } ,
-    function(response) {
- 
-        console.log('Successful 發文粉絲頁貼文的流水號: ' +JSON.stringify(response));
-        document.getElementById('post_record').innerHTML =
-        '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
-});
+    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+      statusChangeCallback(response);        // Returns the login status.
+    });
   };
  
-  
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
     var body = 'Reading JS SDK documentation';
-    /*FB.api('/me' ,function(response) {
+    FB.api('/me' ,function(response) {
  
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, 你的名字是' + response.name + '!' +'登入ID為:' + response.id;
-    });*/
+    });
     /*FB.api('/104745581854224/feed','GET',{} ,function(response) {
  
       console.log('Successful 抓到粉絲頁貼文內容: ' + response.data[0].message);
       document.getElementById('post_record').innerHTML =
           '發文紀錄, 訊息是抓json喔' + response.data[0].message;
 });*/
-
+FB.api('/me/feed',
+    'POST',
+    {"message" :'網頁發文',
+     "access_token" :"EAAEq7clzjskBAF6q5EM5I7ZAN2ufJuSswXtHZBecE9QXhJaxQKchvEJypeZCaLhC2ZAnZBwocZABmiYxGX1JQG4qSZCLRrZCdCybiHjgvZB3ZBiGvMDUzwC9VZBbvyM7ZAanSuUo3Mb1pZCec0ugt3NlDXme1xRHZCxLE3QAeuR6sVRy9QUZCoygq9L8Y3n"
+    } ,
+    function(response) {
+ 
+        console.log('Successful 抓到成功發文粉絲頁貼文的流水號: ' +JSON.stringify(response));
+        document.getElementById('post_record').innerHTML =
+        '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
+});
 
     /*FB.api(
       '/104745581854224/feed',
@@ -85,8 +83,8 @@
 
 <!-- The JS SDK Login Button -->
 
-<!--fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button-->
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
 
 <div id="status">
 </div>
