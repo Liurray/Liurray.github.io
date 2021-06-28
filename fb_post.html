@@ -17,6 +17,11 @@
         'into this webpage.';
     }
   }
+  function checkLoginState() {               // Called when a person is finished with the Login Button.
+    FB.getLoginStatus(function(response) {   // See the onlogin handler
+      statusChangeCallback(response);
+    });
+  }
 
 
   function check_premission() {               // Called when a person is finished with the Login Button.
@@ -51,16 +56,7 @@
         'Thanks for logging in, 你的名字是' + response.name + '!' +'登入ID為:' + response.id;
     });
  
-  /*FB.api('/104745581854224/feed',
-    'POST',
-    {"message" :'網頁發文'
-    } ,
-    function(response) {
  
-        console.log('Successful 抓到成功發文粉絲頁貼文的流水號: ' +JSON.stringify(response));
-        document.getElementById('post_record').innerHTML =
-        '發文紀錄, 訊息是抓json123' + JSON.stringify(response);
-});*/
 
 function post(){
     FB.api('/104745581854224/feed',
