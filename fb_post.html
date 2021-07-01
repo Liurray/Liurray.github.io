@@ -29,64 +29,32 @@
 </head>
 
 <body>
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  
 <script>
-  //圖片submit
-  const id = 'c7becba0ed21ed5'; // 填入 App 的 Client ID
-  const token = '91850d66b17cc6a90bfa5e1d8cf52f6553a5c1c3'; // 填入 token
-//const album = 'XXXX'; // 若要指定傳到某個相簿，就填入相簿的 ID
- 
-//- upload
-const upload = new Vue({
-  el: '#uplaod-wrap',
-  data: {
-    //album: album, // 若要指定傳到某個相簿，就填入相簿的 ID
-    file: null, // 準備拿 input type="file" 的值
-    fs: {
-      name: '', // input的圖檔名稱
-      thumbnail: null, // input的圖片縮圖
-      size: null // input的圖片大小
-    },
-    title: '', // 圖片標題
-    des: '' // 圖片描述
-  },
-  methods: {
-    showFile(e) {
-      this.file = e.target.files[0]; // input type="file" 的值
-      this.fs.name = this.file.name; // input的圖檔名稱
-      this.fs.size = Math.floor(this.file .size * 0.001) + 'KB'; // input的圖片大小
-      this.fs.thumbnail = window.URL.createObjectURL(this.file); // input的圖片縮圖
-      this.title = this.fs.name; // 預設 input 的圖檔名稱為圖片上傳時的圖片標題
-      document.getElementById("demo_img").src=window.URL.createObjectURL(this.file);
-    },
-    
+//登入處理 step 1先登入
+  function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+    console.log('statusChangeCallback');
+    console.log(response);                   // The current login status of the person.
+    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+      testAPI();  
+    } else {                                 // Not logged into your webpage or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this webpage.';
+    }
+  }
+  function checkLoginState() {               // Called when a person is finished with the Login Button.
+    FB.getLoginStatus(function(response) {   // See the onlogin handler
+      statusChangeCallback(response);
+      document.getElementById('form').style.display = 'block';
+      document.getElementById('login').style.display = 'none';
+    });
+  }
 
-    submit() {
-      let settings = {
-        async: true,
-        crossDomain: true,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        url: 'https://api.imgur.com/3/image',
-        headers: {
-          Authorization: 'Bearer ' + token
-        },
-        mimeType: 'multipart/form-data'
-      };
- 
-      let form = new FormData();
-      form.append('image', this.file);
-      form.append('title', this.title);
-      form.append('description', this.des);
-      //form.append('album', album); // 有要指定的相簿就加這行
- 
-      settings.data = form;
-      var imgur_resurl ='';
+var imgur_resurl ='';
 
-      //臉書上傳api
-      const post = submit.then(function(){     
+
+//發文api 函式
+  function post() {     
     var img_des = document.getElementById('des').value;          // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) { 
           console.log('login status',response);
@@ -131,50 +99,8 @@ const upload = new Vue({
   
     })*/
       })
-})
+}
 
-
-
-
- 
-      $.ajax(settings).done(function(res) {
-        console.log(JSON.parse(res).data.link); 
-        imgur_resurl = JSON.parse(res).data.link// 可以看見上傳成功後回的值
-        alert('上傳完成，稍待一會兒就可以在底部的列表上看見了。'+'url為'+imgur_resurl)
-        post();
-      });
-    }
-  }
-});
-
-
-
-
-
-//登入處理 step 1先登入
-  function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-    console.log('statusChangeCallback');
-    console.log(response);                   // The current login status of the person.
-    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-      testAPI();  
-    } else {                                 // Not logged into your webpage or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this webpage.';
-    }
-  }
-  function checkLoginState() {               // Called when a person is finished with the Login Button.
-    FB.getLoginStatus(function(response) {   // See the onlogin handler
-      statusChangeCallback(response);
-      document.getElementById('form').style.display = 'block';
-      document.getElementById('login').style.display = 'none';
-    });
-  }
-
-
-
-
-//發文api 函式
- 
 
 
   window.fbAsyncInit = function() {
@@ -241,6 +167,7 @@ const upload = new Vue({
 						分享此刻到粉絲頁
 					</span>
 					<label for="upload">選擇上傳圖檔</label>
+          <button class="btn btn-primary" type="button" @click="submit">上傳</button>
     						<input id="upload" type="file" accept="image/*" @change="showFile">
 							<!-- 圖片標題 -->
     
@@ -263,7 +190,7 @@ const upload = new Vue({
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" @click="submit">
+							<button class="login100-form-btn" onclick="post()">
 							 		分享到粉絲頁
 							</button>
 						</div>
@@ -292,7 +219,64 @@ const upload = new Vue({
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script>
-  
+    const id = 'c7becba0ed21ed5'; // 填入 App 的 Client ID
+  const token = '91850d66b17cc6a90bfa5e1d8cf52f6553a5c1c3'; // 填入 token
+//const album = 'XXXX'; // 若要指定傳到某個相簿，就填入相簿的 ID
+ 
+//- upload
+const upload = new Vue({
+  el: '#uplaod-wrap',
+  data: {
+    //album: album, // 若要指定傳到某個相簿，就填入相簿的 ID
+    file: null, // 準備拿 input type="file" 的值
+    fs: {
+      name: '', // input的圖檔名稱
+      thumbnail: null, // input的圖片縮圖
+      size: null // input的圖片大小
+    },
+    title: '', // 圖片標題
+    des: '' // 圖片描述
+  },
+  methods: {
+    showFile(e) {
+      this.file = e.target.files[0]; // input type="file" 的值
+      this.fs.name = this.file.name; // input的圖檔名稱
+      this.fs.size = Math.floor(this.file .size * 0.001) + 'KB'; // input的圖片大小
+      this.fs.thumbnail = window.URL.createObjectURL(this.file); // input的圖片縮圖
+      this.title = this.fs.name; // 預設 input 的圖檔名稱為圖片上傳時的圖片標題
+      document.getElementById("demo_img").src=window.URL.createObjectURL(this.file);
+    },
+    
+    submit() {
+      let settings = {
+        async: true,
+        crossDomain: true,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        url: 'https://api.imgur.com/3/image',
+        headers: {
+          Authorization: 'Bearer ' + token
+        },
+        mimeType: 'multipart/form-data'
+      };
+ 
+      let form = new FormData();
+      form.append('image', this.file);
+      form.append('title', this.title);
+      form.append('description', this.des);
+      //form.append('album', album); // 有要指定的相簿就加這行
+ 
+      settings.data = form;
+ 
+      $.ajax(settings).done(function(res) {
+        console.log(JSON.parse(res).data.link); 
+        imgur_resurl = JSON.parse(res).data.link// 可以看見上傳成功後回的值
+        alert('上傳完成，稍待一會兒就可以在底部的列表上看見了。'+'url為'+imgur_resurl)
+      });
+    }
+  }
+});
 
   </script>
 
