@@ -28,7 +28,7 @@ var imgur_resurl ='';
 
 //發文api 函式
   function post() {     
-    var img_des = this.des;          // Called when a person is finished with the Login Button.
+    var img_des = document.getElementById('des').value;          // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) { 
           console.log('login status',response);
           if(!(response.status === 'connected')){
@@ -203,8 +203,8 @@ const upload = new Vue({
 });
 
   </script>
-<label for="des">圖片描述</label>
-<input class="form-control" id="des" type="text" v-model="des" @keyup.13="submit" required-->  
+<label>圖片描述</label>
+<input name="圖片描述"id="des" type="text">  
 
 <button  onclick="post()";>發文</button>
 <div id="status">請先登入
