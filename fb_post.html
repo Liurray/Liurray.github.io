@@ -2,9 +2,34 @@
 <html>
 <head>
 <title>粉絲頁上傳</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 <meta charset="UTF-8">
 </head>
+
 <body>
+  
 <script>
 //登入處理 step 1先登入
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
@@ -111,9 +136,17 @@ var imgur_resurl ='';
 
 
 <!-- The JS SDK Login Button -->
-
-<fb:login-button scope="email, pages_show_list, publish_to_groups, pages_read_engagement, pages_read_user_content, pages_manage_posts, pages_manage_engagement, public_profile" id ='login' style="display: block;" onlogin="checkLoginState(); ">
-</fb:login-button>
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form class="login100-form validate-form">
+        <span class="login100-form-title p-b-26">
+  <fb:login-button data-width="300" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"scope="email, pages_show_list, publish_to_groups, pages_read_engagement, pages_read_user_content, pages_manage_posts, pages_manage_engagement, public_profile" id ='login' style="display: block;" onlogin="checkLoginState(); ">
+  </fb:login-button>
+  
+</div>
+</div>
+</div>
 
 
 
@@ -124,19 +157,52 @@ var imgur_resurl ='';
 <div id ="form" style="display: none;">
 <div id="uplaod-wrap">
   
-    <!-- ...... -->
+  <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26">
+						分享此刻到粉絲頁
+					</span>
+					<label for="upload">選擇上傳圖檔</label>
+    						<input id="upload" type="file" accept="image/*" @change="showFile">
+							<!-- 圖片標題 -->
     
-    <!-- 選取圖片的 input -->
-    <label for="upload">選擇上傳圖檔</label>
-    <input id="upload" type="file" accept="image/*" @change="showFile">
-  
-    <!-- 圖片標題 -->
-    
-    <img id="demo_img" width="50%"/>
-    
-  
-    <!-- 上傳按鈕 -->
-    <button class="btn btn-primary" type="button" @click="submit">上傳</button>
+    						<img id="demo_img" width="100%"/>
+        
+					</span>
+          <span class="login100-form-title p-b-26">
+           
+            </span>
+		
+					 
+					<div class="wrap-input100 validate-input" data-validate="分享此刻的心得">
+						
+						
+					
+						<input class="input100" type="text" id="des" name='圖片描述'>
+						<span class="focus-input100" data-placeholder="分享此刻的心得"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" onclick="post()">
+							 		分享到粉絲頁
+							</button>
+						</div>
+					</div>
+
+					<div class="text-center p-t-115">
+						
+
+					
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
     
   </div>
   <label>圖片描述</label>
