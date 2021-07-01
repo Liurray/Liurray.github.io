@@ -20,8 +20,8 @@
   function checkLoginState() {               // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) {   // See the onlogin handler
       statusChangeCallback(response);
-      document.getElementById('form').style.display = block;
-      document.getElementById('login').style.display = none;
+      document.getElementById('form').style.display = 'block';
+      document.getElementById('login').style.display = 'none';
     });
   }
 
@@ -142,9 +142,10 @@ var imgur_resurl ='';
   </div>
   <label>圖片描述</label>
   <input name="圖片描述"id="des" type="text">  
+  <button  onclick="post()";>發文</button>
 </div>
 
-<button  onclick="post()";>發文</button>
+
 <!--imgur api 區塊-->
   <!-- 引用js -->
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
