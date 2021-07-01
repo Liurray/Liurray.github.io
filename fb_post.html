@@ -83,45 +83,10 @@ const upload = new Vue({
       //form.append('album', album); // 有要指定的相簿就加這行
  
       settings.data = form;
- 
-      $.ajax(settings).done(function(res) {
-        console.log(JSON.parse(res).data.link); 
-        imgur_resurl = JSON.parse(res).data.link// 可以看見上傳成功後回的值
-        alert('上傳完成，稍待一會兒就可以在底部的列表上看見了。'+'url為'+imgur_resurl)
-        post();
-      });
-    }
-  }
-});
+      var imgur_resurl ='';
 
-
-
-
-
-//登入處理 step 1先登入
-  function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-    console.log('statusChangeCallback');
-    console.log(response);                   // The current login status of the person.
-    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-      testAPI();  
-    } else {                                 // Not logged into your webpage or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this webpage.';
-    }
-  }
-  function checkLoginState() {               // Called when a person is finished with the Login Button.
-    FB.getLoginStatus(function(response) {   // See the onlogin handler
-      statusChangeCallback(response);
-      document.getElementById('form').style.display = 'block';
-      document.getElementById('login').style.display = 'none';
-    });
-  }
-
-var imgur_resurl ='';
-
-
-//發文api 函式
-  const post = submit.then(function(){     
+      //臉書上傳api
+      const post = submit.then(function(){     
     var img_des = document.getElementById('des').value;          // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) { 
           console.log('login status',response);
@@ -168,6 +133,48 @@ var imgur_resurl ='';
       })
 })
 
+
+
+
+ 
+      $.ajax(settings).done(function(res) {
+        console.log(JSON.parse(res).data.link); 
+        imgur_resurl = JSON.parse(res).data.link// 可以看見上傳成功後回的值
+        alert('上傳完成，稍待一會兒就可以在底部的列表上看見了。'+'url為'+imgur_resurl)
+        post();
+      });
+    }
+  }
+});
+
+
+
+
+
+//登入處理 step 1先登入
+  function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+    console.log('statusChangeCallback');
+    console.log(response);                   // The current login status of the person.
+    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+      testAPI();  
+    } else {                                 // Not logged into your webpage or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this webpage.';
+    }
+  }
+  function checkLoginState() {               // Called when a person is finished with the Login Button.
+    FB.getLoginStatus(function(response) {   // See the onlogin handler
+      statusChangeCallback(response);
+      document.getElementById('form').style.display = 'block';
+      document.getElementById('login').style.display = 'none';
+    });
+  }
+
+
+
+
+//發文api 函式
+ 
 
 
   window.fbAsyncInit = function() {
