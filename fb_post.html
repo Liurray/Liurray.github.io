@@ -25,9 +25,10 @@
 
 var imgur_resurl ='';
 
+
 //發文api 函式
   function post() {     
-    var body = '';          // Called when a person is finished with the Login Button.
+    var img_des = this.des;          // Called when a person is finished with the Login Button.
     FB.getLoginStatus(function(response) { 
           console.log('login status',response);
           if(!(response.status === 'connected')){
@@ -47,7 +48,7 @@ var imgur_resurl ='';
                             var data = response.data;
                             pageAccessToken= data[0].access_token;
                             console.log('pageAccessToken::',pageAccessToken);
-                            FB.api('/104745581854224/photos', 'post', {message :'這是測試',url :imgur_resurl, access_token : pageAccessToken }, function(response) {
+                            FB.api('/104745581854224/photos', 'post', {message :img_des,url :imgur_resurl, access_token : pageAccessToken }, function(response) {
                                     console.log('response',response)
                                     if (!response || response.error) {
                                         alert('Error occured');
@@ -202,14 +203,12 @@ const upload = new Vue({
 });
 
   </script>
-
+<label for="des">圖片描述</label>
+<input class="form-control" id="des" type="text" v-model="des" @keyup.13="submit" required-->  
 
 <button  onclick="post()";>發文</button>
 <div id="status">請先登入
 </div>
-<div id="premission">獲取的權限
-</div>
-<div id="post_record">發文紀錄
 
 </div>
 <!-- Load the JS SDK asynchronously -->
