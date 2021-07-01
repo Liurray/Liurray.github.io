@@ -2,6 +2,8 @@
 <html>
 <head>
 <title>粉絲頁上傳</title>
+<!--LIFF SDK-->
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -29,8 +31,98 @@
 </head>
 
 <body>
+  <!-- The JS SDK Login Button -->
+<div id='login''style="display: block;>
+  <div class="limiter" >
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <form class="login100-form validate-form">
+          <span class="login100-form-title p-b-26">
+    <fb:login-button data-width="300" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"scope="email, pages_show_list, publish_to_groups, pages_read_engagement, pages_read_user_content, pages_manage_posts, pages_manage_engagement, public_profile"  onlogin="checkLoginState(); ">
+    </fb:login-button>
+    
+  </div>
+  </div>
+  </div>
+  </div>
   
+  
+  
+  
+  
+  
+  <!--上傳內容設計-->
+  <div id ="form" style="display: none;">
+  <div id="uplaod-wrap">
+    
+    <div class="limiter">
+      <div class="container-login100">
+        <div class="wrap-login100">
+          <form class="login100-form validate-form">
+            <span class="login100-form-title p-b-26">
+              分享此刻到粉絲頁
+            </span>
+            <label for="upload">選擇上傳圖檔</label>
+            <button class="btn btn-primary" type="button" @click="submit">上傳</button>
+                  <input id="upload" type="file" accept="image/*" @change="showFile">
+                <!-- 圖片標題 -->
+      
+                  <img id="demo_img" width="100%"/>
+          
+            </span>
+            <span class="login100-form-title p-b-26">
+             
+              </span>
+      
+             
+            <div class="wrap-input100 validate-input" data-validate="分享此刻的心得">
+              <span class="login100-form-title p-b-26">
+                寫下你的心情
+              </span>
+              
+            
+              <input class="input100" type="text" id="des" name='圖片描述'>
+            
+            </div>
+  
+            <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button class="login100-form-btn" onclick="post()">
+                     分享到粉絲頁
+                </button>
+              </div>
+            </div>
+  
+            <div class="text-center p-t-115">
+              
+  
+            
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+      
+    </div>
+    <label>圖片描述</label>
+    <input name="圖片描述"id="des" type="text">  
+    <button  onclick="post()";>發文</button>
+  </div>
+  
+  
+  <!--imgur api 區塊-->
+    <!-- 引用js -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script>
+  //liff init 
+  var liffID = "1655371574-9qM0QxkM";
+        liff.init({
+            liffId: liffID
+        }).then(function () {
+
 //登入處理 step 1先登入
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
@@ -129,98 +221,7 @@ var imgur_resurl ='';
 
 
 }
-
-</script>
-
-
-
-
-<!-- The JS SDK Login Button -->
-<div id='login''style="display: block;>
-<div class="limiter" >
-  <div class="container-login100">
-    <div class="wrap-login100">
-      <form class="login100-form validate-form">
-        <span class="login100-form-title p-b-26">
-  <fb:login-button data-width="300" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"scope="email, pages_show_list, publish_to_groups, pages_read_engagement, pages_read_user_content, pages_manage_posts, pages_manage_engagement, public_profile"  onlogin="checkLoginState(); ">
-  </fb:login-button>
-  
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-
-
-<!--上傳內容設計-->
-<div id ="form" style="display: none;">
-<div id="uplaod-wrap">
-  
-  <div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-26">
-						分享此刻到粉絲頁
-					</span>
-					<label for="upload">選擇上傳圖檔</label>
-          <button class="btn btn-primary" type="button" @click="submit">上傳</button>
-    						<input id="upload" type="file" accept="image/*" @change="showFile">
-							<!-- 圖片標題 -->
-    
-    						<img id="demo_img" width="100%"/>
-        
-					</span>
-          <span class="login100-form-title p-b-26">
-           
-            </span>
-		
-					 
-					<div class="wrap-input100 validate-input" data-validate="分享此刻的心得">
-            <span class="login100-form-title p-b-26">
-              寫下你的心情
-            </span>
-						
-					
-						<input class="input100" type="text" id="des" name='圖片描述'>
-					
-					</div>
-
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" onclick="post()">
-							 		分享到粉絲頁
-							</button>
-						</div>
-					</div>
-
-					<div class="text-center p-t-115">
-						
-
-					
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-    
-  </div>
-  <label>圖片描述</label>
-  <input name="圖片描述"id="des" type="text">  
-  <button  onclick="post()";>發文</button>
-</div>
-
-
-<!--imgur api 區塊-->
-  <!-- 引用js -->
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <script>
+    //上傳處理區塊
     const id = 'c7becba0ed21ed5'; // 填入 App 的 Client ID
   const token = '91850d66b17cc6a90bfa5e1d8cf52f6553a5c1c3'; // 填入 token
 //const album = 'XXXX'; // 若要指定傳到某個相簿，就填入相簿的 ID
@@ -279,6 +280,11 @@ const upload = new Vue({
     }
   }
 });
+
+}).catch(function (error) {
+            console.log(error);
+
+        }); //liff結尾
 
   </script>
 
